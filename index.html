@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<ul id="repositories"></ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="/js/models/Organization.js"></script>
+<script src="/js/models/Repository.js"></script>
+<script src="/js/collections/Repositories.js"></script>
+<!--<script src="/js/templates/RepositoryTemplate.js"></script>-->
+<script id="repositoryTemplate" type="text/template">
+    <h3><a href="<%= html_url %>"><%= readableName %></a> - <%= language %>
+        - <%= forks_count %> forks - <%= readableDate %></h3>
+</script>
+<script src="/js/views/RepositoryView.js"></script>
+
+<script>
+$(function() {
+    var repos = new Repositories();
+    repos.fetch().then(function () {
+        repos.each(function(repo) {
+            var view = new RepositoryView({model: repo});
+            view.render();
+        })
+    });
+});
+</script>
+
+</body>
+</html>
