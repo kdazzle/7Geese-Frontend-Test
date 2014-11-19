@@ -11,8 +11,17 @@ h1 {
     font-size:1.2em;
 }
 
-td {
+table {
+    border:1px whitesmoke solid;
+    padding:20px;
+}
+
+td, th {
     padding:10px;
+}
+
+th {
+    text-align:center;
 }
 
 #byline {
